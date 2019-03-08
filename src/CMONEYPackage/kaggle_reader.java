@@ -1,4 +1,4 @@
-package kaggle_reader;
+package CMONEYPackage;
 
 import java.io.File;
 import java.io.FileNotFoundException;

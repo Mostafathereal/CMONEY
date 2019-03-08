@@ -18,7 +18,7 @@ public class DataReader {
 		}
 		
 		
-		for(int z = 0; z < 50; z++) {
+		for(int z = 0; z < 10; z++) {
 			for(int j = 0; j < 28; j++) {
 				for (int k = 0; k < 28; k++) {
 					
