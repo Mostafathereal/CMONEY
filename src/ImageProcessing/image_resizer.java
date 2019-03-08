@@ -11,10 +11,17 @@ import javax.imageio.ImageIO;
  * 
  * Taken from https://www.mkyong.com/java/how-to-resize-an-image-in-java/
  * @author Raymond
+ * @since 2019-03-07
  *
  */
 public class image_resizer {
 	
+	/**
+	 * 
+	 * @param originalImage
+	 * @param type
+	 * @return
+	 */
 	public static BufferedImage resizeImage(BufferedImage originalImage, int type)
 	{
 		BufferedImage resizedImage = new BufferedImage(28, 28, type);
@@ -25,6 +32,11 @@ public class image_resizer {
 		return resizedImage;
 	}
 	
+	/**
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String [] args) throws IOException{
 		BufferedImage originalImage = ImageIO.read(new File("data/sample_pictures/raymond_5_bold.png"));
 		int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
