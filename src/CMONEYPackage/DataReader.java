@@ -34,6 +34,8 @@ public class DataReader {
 		
 		
 		
+		
+		
 		//labels = R.getLabels("train-images.idx3-ubyte");
 		
 		
