@@ -1,4 +1,4 @@
-package Readers;
+package ImageProcessing;
 
 import static java.lang.String.format;
 

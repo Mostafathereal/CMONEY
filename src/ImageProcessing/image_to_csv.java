@@ -1,4 +1,4 @@
-package image_resizer;
+package ImageProcessing;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -70,7 +70,7 @@ public class image_to_csv {
 
 	    //read image
 	    try{
-	      f = new File("sample_pictures/raymond_5_bold-28x28.png");
+	      f = new File("data/sample_pictures/raymond_5_bold-28x28.png");
 	      img = ImageIO.read(f);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -88,7 +88,7 @@ public class image_to_csv {
 	    BufferedImage new_img = csv_to_img(img_csv);
 	    
 	    try{
-	        f = new File("sample_pictures/raymond_5_bold-28x28-new1.png");
+	        f = new File("data/sample_pictures/test-sraymond_5_bold-28x28-new1.png");
 	        ImageIO.write(new_img, "png", f);
 	      }catch(IOException e){
 	        System.out.println(e);
