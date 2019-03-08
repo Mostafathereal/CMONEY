@@ -1,6 +1,8 @@
 package CMONEYPackage;
 
 import java.lang.Math;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.factory.Nd4j;
 
 //https://github.com/ChriZ982/NeuralNetTest/tree/master/src/zindach/mathlib
 /**
@@ -12,9 +14,11 @@ import java.lang.Math;
  */
 public class Network {
 	
+	INDArray nd = Nd4j.create(new float[]{1, 2, 3, 4}, new int[]{2, 2});
+	
 	private final int numLayers;
 	private final int[] sizes;
-	private double[] biases;
+	private double[] biases;     
 	private double[] weights;
 	
 	
