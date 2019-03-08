@@ -1,4 +1,4 @@
-package CMONEYPackage;
+package Readers;
 
 import static java.lang.String.format;
 
