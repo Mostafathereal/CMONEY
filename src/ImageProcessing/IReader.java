@@ -1,19 +1,17 @@
 package ImageProcessing;
 import java.util.List;
 
-/**
- * Reads the MNIST dataset and stores them to be used 
- * by neural network and learning
- * @author Group 2
- * @since 2019-03-07
- */
-public class DataReader {
+
+import java.util.List;
+
+public class IReader {
 	
-	public static MnistReader R = (MnistReader) new MnistReader();
 	
-	public static int[] labels = (int[]) R.getLabels("t10k-labels.idx1-ubyte");
+	public static MnistIReader R = (MnistIReader) new MnistIReader();
 	
-	public static List<int[][]> images = (List<int[][]>) R.getImages("t10k-images.idx3-ubyte");
+	public static int[] labels = (int[]) R.getLabels("data/t10k-labels.idx1-ubyte");
+	
+	public static List<int[][]> images = (List<int[][]>) R.getImages("data/t10k-images.idx3-ubyte");
 
 	/**
 	 * The stores the pictures and their labels

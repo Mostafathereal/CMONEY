@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
  * @since 2019-03-07
  *
  */
-public class image_resizer {
+public class ImageResizer {
 	
 	/**
 	 * 
@@ -46,3 +46,4 @@ public class image_resizer {
 	}
 
 }
+

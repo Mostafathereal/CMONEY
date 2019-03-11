@@ -1,8 +1,8 @@
 package CMONEYPackage;
 
 import java.lang.Math;
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
+//import org.nd4j.linalg.api.ndarray.INDArray;
+//import org.nd4j.linalg.factory.Nd4j;
 
 //https://github.com/ChriZ982/NeuralNetTest/tree/master/src/zindach/mathlib
 /**
@@ -12,9 +12,9 @@ import org.nd4j.linalg.factory.Nd4j;
  * @version 1.0
  * @since 2019-03-07
  */
-public class Network {
+public class oldNetwork {
 	
-	INDArray nd = Nd4j.create(new float[]{1, 2, 3, 4}, new int[]{2, 2});
+	//INDArray nd = Nd4j.create(new float[]{1, 2, 3, 4}, new int[]{2, 2});
 	
 	private final int numLayers;
 	private final int[] sizes;
@@ -22,7 +22,7 @@ public class Network {
 	private double[] weights;
 	
 	
-    public Network(int[] sizes){
+    public oldNetwork(int[] sizes){
     	this.numLayers = sizes.length;
     	this.sizes = sizes;
     	
