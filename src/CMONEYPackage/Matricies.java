@@ -1,8 +1,8 @@
 package CMONEYPackage;
 
-import org.ejml.simple.*;;
+import org.ejml.simple.*;
 
-public class matricies {
+public class Matricies {
 	
 	public static SimpleMatrix matrix = new SimpleMatrix(4, 4);
 
