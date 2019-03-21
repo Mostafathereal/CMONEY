@@ -22,12 +22,11 @@ public class NeuralNet {
 		weights = new SimpleMatrix[numLayers-1];
 		biases = new SimpleMatrix[numLayers-1];
 		
-		//setting random values to weights
+		//setting random values to weights & biases
 		for(int i = 0; i < numLayers - 1; i++) {
 			weights[i] = SimpleMatrix.random(sizes[i+1],sizes[i],-1,1,rand);
 			biases[i] = SimpleMatrix.random(sizes[i+1],1,-1,1,rand);
 		}
-		
 	}
 	
 	public static void backProp() {

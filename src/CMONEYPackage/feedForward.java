@@ -2,7 +2,7 @@ package CMONEYPackage;
 
 public class feedForward {
 	
-	public double [] feedforward(double a) {
+	public void feedforward(double a) {
 		
 	}
 	
