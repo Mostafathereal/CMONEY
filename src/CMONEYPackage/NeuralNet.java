@@ -15,6 +15,7 @@ public class NeuralNet {
 						
 		for(int i = 0; i < 4; i++) {
 			System.out.print(sizes[i] + "  ");
+			
 		}
 		
 		//matrix.print();
