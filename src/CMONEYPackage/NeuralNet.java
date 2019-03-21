@@ -3,11 +3,7 @@ package CMONEYPackage;
 import org.ejml.simple.SimpleMatrix;
 import java.util.Random;
 
-
-
 public class NeuralNet {
-
-	//public static SimpleMatrix matrix = new SimpleMatrix(4, 4);
 	
 	//size of each layer of network (4 layers)
 	private final static int[] sizes = new int[]{4, 16, 16, 10};   // manually setting the size of each layer of nodes
@@ -32,7 +28,9 @@ public class NeuralNet {
 			biases[i] = SimpleMatrix.random(sizes[i+1],1,-1,1,rand);
 		}
 		
-
+	}
+	
+	public static void backProp() {
 		
 	}
 	
