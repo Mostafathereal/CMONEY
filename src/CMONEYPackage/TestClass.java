@@ -10,7 +10,7 @@ public class TestClass {
 		System.out.println("hello");
 		
 		for(int i = 0; i < 3; i++) {
-			n.weight[i].print();
+			n.weights[i].print();
 		}
 		
 
