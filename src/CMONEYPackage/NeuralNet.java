@@ -3,6 +3,7 @@ package CMONEYPackage;
 import org.ejml.simple.SimpleMatrix;
 import java.util.Random;
 
+
 public class NeuralNet {
 	
 	//size of each layer of network (4 layers)
@@ -33,6 +34,33 @@ public class NeuralNet {
 		
 	}
 	
+	public void updateMiniBatch(int[][] miniBatch, int learnRate) {
+		
+		SimpleMatrix[] nb = new SimpleMatrix[this.biases.length];
+		SimpleMatrix[] nw = new SimpleMatrix[this.weights.length];
+		
+		int i = 0;
+		for (SimpleMatrix A : this.biases) {
+			nb[i] = new SimpleMatrix(A.numRows(), A.numCols());
+			i++;
+		}
+		
+		i = 0;
+		for (SimpleMatrix A : this.weights) {
+			nw[i] = new SimpleMatrix(A.numRows(), A.numCols());
+			i++;
+		}
+		
+//		for(i = 0; i < 3; i++) {
+//			System.out.println("Testing");
+//			nw[i].print();
+//			nb[i].print();
+//		}
+		
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -44,6 +72,7 @@ public class NeuralNet {
 			n.weights[i].print();
 			n.biases[i].print();
 		}
+		
 	
 	}
 
