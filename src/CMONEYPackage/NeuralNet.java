@@ -30,8 +30,9 @@ public class NeuralNet {
 		}
 	}
 	
-	public static void backProp() {
+	public void backProp() {
 		
+	
 	}
 	
 	public void updateMiniBatch(int[][] miniBatch, int learnRate) {
@@ -51,11 +52,7 @@ public class NeuralNet {
 			i++;
 		}
 		
-//		for(i = 0; i < 3; i++) {
-//			System.out.println("Testing");
-//			nw[i].print();
-//			nb[i].print();
-//		}
+		//SimpleMatrix[] dn = backprop(miniBatch);
 		
 		
 		
