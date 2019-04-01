@@ -6,7 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lchri/Documents/Lucia_2nd_Year/Term2/2XB3/proj_repo/nio.jar/nio.jar"/>
-	<classpathentry kind="lib" path="C:/Users/lchri/Documents/Lucia_2nd_Year/Term2/2XB3/proj_repo/ejml.jar/ejml.jar"/>
+	<classpathentry kind="lib" path="/Users/TangoPro/Downloads/ejml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

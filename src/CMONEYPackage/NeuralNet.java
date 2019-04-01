@@ -1,6 +1,7 @@
 package CMONEYPackage;
 
 import org.ejml.simple.SimpleMatrix;
+import org.ejml.simple.*;
 import java.util.Random;
 
 
@@ -31,6 +32,23 @@ public class NeuralNet {
 	}
 	
 	public void backProp() {
+		SimpleMatrix[] nabla_w = new SimpleMatrix[numLayers-1];
+		SimpleMatrix[] nabla_b = new SimpleMatrix[numLayers-1];
+		Random rand = new Random();
+		
+		int i = 0;
+		for (SimpleMatrix A : this.biases) {
+			nabla_w[i] = new SimpleMatrix(A.numRows(), A.numCols());
+			i++;
+		}
+		
+		i = 0;
+		for (SimpleMatrix A : this.weights) {
+			nabla_b[i] = new SimpleMatrix(A.numRows(), A.numCols());
+			i++;
+		}
+		
+		
 		
 	
 	}
