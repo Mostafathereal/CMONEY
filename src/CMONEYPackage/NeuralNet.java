@@ -1,8 +1,16 @@
 package CMONEYPackage;
 
+import java.util.Random;
+
+import org.ejml.simple.SimpleMatrix;
+import java.util.List;
+import java.util.ArrayList;
+import org.ejml.simple.*;
+import java.io.Serializable;
+import org.ejml.simple.SimpleBase;
 import org.ejml.simple.SimpleMatrix;
 import org.ejml.simple.*;
-import java.util.Random;
+
 
 
 public class NeuralNet {
@@ -31,7 +39,7 @@ public class NeuralNet {
 		}
 	}
 	
-	public void backProp() {
+	public void backProp(int[] x, int y) {
 		SimpleMatrix[] nabla_w = new SimpleMatrix[numLayers-1];
 		SimpleMatrix[] nabla_b = new SimpleMatrix[numLayers-1];
 		Random rand = new Random();
@@ -48,12 +56,47 @@ public class NeuralNet {
 			i++;
 		}
 		
+		List<Double> Activation = new ArrayList<Double>();
+
+		for(int j = 0; i < x.length; i++) {
+			Activation.add((double) (x[i]));
+		}
+		
+		ArrayList<List> activations = new ArrayList<List>();
+		activations.add(Activation);
+		
+		ArrayList<int[]> zs = new ArrayList<int[]>();
+				
+		SimpleMatrix temp;
+		double[] del;
+		
+		double z;
+		SimpleMatrix actMat;
+		for (SimpleMatrix A : this.biases) {
+			
+			i=0;
+			for (double a : Activation) {
+				del[i] = a;
+				i++;
+			}
+						
+			temp = new SimpleMatrix(Activation.size(), 1, true, del);
+
+			z = this.weights[i].dot(temp) + this.biases[i];
+			i++;
+			
+			
+		}
 		
 		
-	
+		
+		
+		
+		
+		
 	}
 	
-	public void updateMiniBatch(int[][] miniBatch, int learnRate) {
+public void updateMiniBatch(int[][] miniBatch, int learnRate) {
 		
 		SimpleMatrix[] nb = new SimpleMatrix[this.biases.length];
 		SimpleMatrix[] nw = new SimpleMatrix[this.weights.length];
@@ -70,10 +113,33 @@ public class NeuralNet {
 			i++;
 		}
 		
-		//SimpleMatrix[] dn = backprop(miniBatch);
+		//SimpleMatrix[][] dn = backProp(miniBatch[0], miniBatch[1][0]);
 		
+		i = 0;
+		for (SimpleMatrix A : nb) {
+			nb[i] = A.plus(dn[0][i]);
+			i++;
+		}
 		
+		i = 0;
+		for (SimpleMatrix A : nw) {
+			nw[i] = A.plus(dn[1][i]);
+			i++;
+		}
 		
+		double rate = learnRate / miniBatch.length;
+		
+		i = 0;
+		for (SimpleMatrix A : nb) {
+			this.biases[i] = A.scale(rate).mult(this.biases[i]);
+			i++;
+		}
+		
+		i = 0;
+		for (SimpleMatrix A : nw) {
+			this.weights[i] = A.scale(rate).mult(this.weights[i]);
+			i++;
+		}
 	}
 	
 	public static void main(String[] args) {
