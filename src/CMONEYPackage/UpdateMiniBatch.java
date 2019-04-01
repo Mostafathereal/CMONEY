@@ -23,14 +23,33 @@ public class UpdateMiniBatch {
 			i++;
 		}
 		
-//		for(i = 0; i < 3; i++) {
-//			System.out.println("Testing");
-//			nw[i].print();
-//			nb[i].print();
-//		}
+		SimpleMatrix[][] dn = backprop(miniBatch);
 		
+		i = 0;
+		for (SimpleMatrix A : nb) {
+			nb[i] = A.plus(dn[0][i]);
+			i++;
+		}
 		
+		i = 0;
+		for (SimpleMatrix A : nw) {
+			nw[i] = A.plus(dn[1][i]);
+			i++;
+		}
 		
+		double rate = learnRate / miniBatch.length;
+		
+		i = 0;
+		for (SimpleMatrix A : nb) {
+			this.biases[i] = A.scale(rate).mult(this.biases[i]);
+			i++;
+		}
+		
+		i = 0;
+		for (SimpleMatrix A : nw) {
+			this.weights[i] = A.scale(rate).mult(this.weights[i]);
+			i++;
+		}
 	}
 //
 }
