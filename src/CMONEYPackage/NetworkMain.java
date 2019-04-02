@@ -22,16 +22,20 @@ public class NetworkMain {
 
 
 	public static void main(String[] args) {
+		NewNetwork net = new NewNetwork(); 
+
 		
 		int[] labels = R.getLabels("data/t10k-labels.idx1-ubyte");
 		
 		List<int[][]> images = R.getImages("data/t10k-images.idx3-ubyte");
 		
 		int[][] image_set = new int[1000][784];  
-		
+		int[][] label_set = new int[1000][10];
+ 		
 		for(int i = 0; i < 500; i++) {
 			
 			image_set[i] = arrConvert(images.get(i));
+			label_set[i] = net.genOutputs(labels[i]); 
 			
 			
 		}
@@ -40,7 +44,6 @@ public class NetworkMain {
 		
 		// TODO Auto-generated method stub
 		
-		NewNetwork net = new NewNetwork(); 
 
 		net.setRandWeights();
 		
@@ -56,7 +59,12 @@ public class NetworkMain {
 		
 		System.out.print("after training (soln is " + labels[0] + ") :");
 		
-		net.trainNet(image_set, labels, 500);
+		net.trainNet(image_set, label_set, 500);
+		
+		System.out.println(net.evaluate(input));
+
+		
+		
 		
 		
 
