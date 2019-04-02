@@ -1,11 +1,22 @@
 package CMONEYPackage;
 
-import org.ejml.simple.SimpleMatrix;
-//import org.ejml.equation.*;
+//import org.ejml.simple.SimpleMatrix;
 
 public class feedForward {
 	
-	public SimpleMatrix feedforward(SimpleMatrix a) {
+	
+	public void feedForward() {
+		//input layer
+		for(int i=0; i<NewNetwork.sizes[0]) {
+			
+		}
+		
+		
+		
+	}
+	
+	
+	/*public SimpleMatrix feedforward(SimpleMatrix a) {
 		
 		for(int i=0; i<NeuralNet.weights.length; i++) {
 			SimpleMatrix dot = dot(a,NeuralNet.weights[i]);
@@ -23,6 +34,6 @@ public class feedForward {
 	public SimpleMatrix dot(SimpleMatrix A, SimpleMatrix B) {
 		SimpleMatrix result = A.elementMult(B); 
 		return result;
-	}
+	}*/
 	
 }
