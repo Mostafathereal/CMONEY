@@ -7,7 +7,6 @@ import ImageProcessing.MnistIReader;
 
 public class NetworkMain {
 	
-	public static MnistIReader R = (MnistIReader) new MnistIReader();
 	
 	public static int[] arrConvert(int arr[][]) {
 		int[] x = new int[arr[0].length * arr.length];
@@ -17,6 +16,7 @@ public class NetworkMain {
 			for(int j = 0; j < arr[0].length; j++) {
 				x[counter] = arr[i][j];
 			}
+			counter++;
 		}
 		return x;
 	}
@@ -24,6 +24,7 @@ public class NetworkMain {
 
 	public static void main(String[] args) {
 		NewNetwork net = new NewNetwork(); 
+	    MnistIReader R = (MnistIReader) new MnistIReader();
 
 		
 		int[] labels = R.getLabels("data/t10k-labels.idx1-ubyte");
@@ -60,7 +61,14 @@ public class NetworkMain {
 		
 		System.out.print("after training (soln is " + labels[0] + ") :");
 		
+
+		
+		
 		net.trainNet(image_set, label_set, 500);
+		
+		for(int k = 0; k < 784; k++) {
+			System.out.println(image_set[0][k]);
+		}
 		
 		System.out.println(net.evaluate(input));
 
