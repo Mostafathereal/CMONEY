@@ -1,11 +1,9 @@
 package CMONEYPackage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.Random;
 
 
 public class NewNetwork {
@@ -14,8 +12,9 @@ public class NewNetwork {
 	private double[][] w0 = new double[16][784];
 	private double[][] w1 = new double[16][16];
 	private double[][] w2 = new double[10][16];
-
-
+	
+	Random rand = new Random(System.currentTimeMillis());
+	
 	private double[] b0 = new double[16];
 	private double[] b1 = new double[16];
 	private double[] b2 = new double[10];
@@ -55,21 +54,25 @@ public class NewNetwork {
 	public void setRandWeights() {
 		for(int i = 0; i < this.w0.length; i++) {
 			for(int j = 0; j < this.w0[i].length; j++) {
-				this.w0[i][j] = -1.0 + (2.0)* Math.random();
+				this.w0[i][j] = randRange(-1, 1);
 			}
 		}
 		
 		for(int i = 0; i < this.w1.length; i++) {
 			for(int j = 0; j < this.w1[i].length; j++) {
-				this.w1[i][j] = -1.0 + (2.0)* Math.random();
+				this.w1[i][j] = randRange(-1, 1);
 			}
 		}
 		
 		for(int i = 0; i < this.w2.length; i++) {
 			for(int j = 0; j < this.w2[i].length; j++) {
-				this.w2[i][j] = -1.0 + (2.0)* Math.random();
+				this.w2[i][j] = randRange(-1, 1);
 			}
 		}
+	}
+	
+	private double randRange(double a, double b) {
+		return a + (b - a) * Math.random();
 	}
 	
 //	private void setRandBiases() {
