@@ -9,15 +9,24 @@ public class IReader {
 	
 	public static MnistIReader R = (MnistIReader) new MnistIReader();
 	
-	public static int[] labels = (int[]) R.getLabels("data/t10k-labels.idx1-ubyte");
 	
 	public static List<int[][]> images = (List<int[][]>) R.getImages("data/t10k-images.idx3-ubyte");
+	
+	public static int[] getLabels() {
+		return (int[]) R.getLabels("data/t10k-labels.idx1-ubyte");
+	}
+	
+	public List<int[][]> getImages() {
+		return R.getImages("data/t10k-images.idx3-ubyte");
+	}
 
 	/**
 	 * The stores the pictures and their labels
 	 * @param args string array
 	 */
 	public static void main(String[] args) {
+		
+		int[] labels = getLabels();
 		
 		for(int i = 0; i < 16; i++) {
 			System.out.println(labels[i]);

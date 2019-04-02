@@ -75,12 +75,11 @@ public class KagglReader {
 		}
 		
 		input.close();
-		
+
 		return img_array;
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException
-    { 
+	public static void main(String[] args) throws FileNotFoundException { 
   
         Integer[][] arr = kag_reader_train(19);
   
@@ -88,11 +87,8 @@ public class KagglReader {
             for (int j = 0; j <= 27; j++) { 
                 System.out.print(arr[i][j] + " "); 
             } 
-  
+            
             System.out.println(); 
         } 
     } 
-	
-	
-
 }
