@@ -1,7 +1,6 @@
 package CMONEYPackage;
 
 import org.ejml.simple.SimpleMatrix;
-//import org.ejml.equation.*;
 
 public class feedForward {
 	
