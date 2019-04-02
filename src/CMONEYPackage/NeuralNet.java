@@ -68,7 +68,7 @@ public class NeuralNet {
 		ArrayList<int[]> zs = new ArrayList<int[]>();
 				
 		SimpleMatrix temp;
-		double[] del;
+		double[] del = null;
 		
 		double z;
 		SimpleMatrix actMat;
@@ -82,7 +82,7 @@ public class NeuralNet {
 						
 			temp = new SimpleMatrix(Activation.size(), 1, true, del);
 
-			z = this.weights[i].dot(temp) + this.biases[i];
+			z = this.weights[i].dot(temp) + this.biases[i].get(0);
 			i++;
 			
 			
