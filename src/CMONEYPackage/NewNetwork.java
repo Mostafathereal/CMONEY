@@ -14,9 +14,7 @@ public class NewNetwork {
 	private double[][][] weights;
 	private double[][] biases;
 	
-	//private actL1
-	
-	
+	private double[][] activations; 	
 	
 	private void setRandWeights() {
 		
@@ -29,17 +27,17 @@ public class NewNetwork {
 		}
 	}
 	
-	
-	
 	private void setRandBiases() {
 		
 		for(int i = 0; i < biases.length; i++) {
 			for(int j = 0; j < biases[i].length; j++) {
 				biases[i][j] = -1.0 + 2.0*Math.random();
 			}
-		}
-		
+		}	
 	}
+	
+	
+	
 	
 	
 
