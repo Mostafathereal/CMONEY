@@ -25,14 +25,19 @@ public class NewNetwork {
 	
 	private double learnRate;
 	
-	private double[] act0 = new double[784];
-	private double[] act1 = new double[16];
-	private double[] act2 = new double[16];
-	private double[] act3 = new double[10];
+	public double[] act0;
+	private double[] act1;
+	private double[] act2;
+	private double[] act3;
 	
 	
-	public void NewNetwork() {
+	public  NewNetwork() {
 		this.learnRate = 0.1;
+		
+		act0 = new double[784];
+		act1 = new double[16];
+		act2 = new double[16];
+		act3 = new double[10];
 		
 	}
 	
@@ -88,10 +93,10 @@ public class NewNetwork {
 		for(int i = 0; i < epochs; i++) {
 			for(int j = 0; j < in.length; j++) {
 				feedForward(in[i]);
-				double[] err = new double[10];
-				for(int l = 0; l < 10; l++) {
-				}
-				backProp(genOutputs(7));
+				double[] errors = new double[10];
+				for (int k = 0; k < this.sizes[3]; k++)
+					errors[k] = out[j][k] - this.act3[k];
+				backProp(errors);
 			}
 		}
 	}
@@ -108,116 +113,74 @@ public class NewNetwork {
 	 * then adjusts the weights and biases based on the cost function derivative to train the neural network.
 	 * @param outputs The array of values of the desired activations in the output layer.
 	 */
-//	public void backProp(int[] outputs) {
-//		
-//		double[] delOutC = new double[this.act3.length];
-//		double[] outErr = new double[this.act3.length];
-//		
-//		//create cost derivative vector
-//		for (int i = 0; i < delOutC.length; i ++) {
-//			delOutC[i] = this.act3[i] - outputs[i];
-//			//System.out.println(delOutC[i]);
-//		}
-//		
-//		//calculate error of output layer
-//		for (int i = 0; i < outErr.length; i ++) {
-//			outErr[i] = delOutC[i] * dSigmoid(this.z3[i]);
-//		}
-//		
-//		double[] h2Err = new double[this.act2.length];
-//		double[][] wt2 = transpose(this.w2);
-//		double[] intH2 = mult(wt2, outErr);
-//		
-//		//calculate error vector of second hidden layer
-//		for (int i = 0; i < h2Err.length; i ++) {
-//			h2Err[i] = intH2[i] * dSigmoid(this.z2[i]);
-//		}
-//		
-//		double[] h1Err = new double[this.act1.length];
-//		double[][] wt1 = transpose(this.w1);
-//		double[] intH1 = mult(wt1, h2Err);
-//		
-//		//calculate error vector of first hidden layer
-//		for (int i = 0; i < h1Err.length; i ++) {
-//			h1Err[i] = intH1[i] * dSigmoid(this.z1[i]);
-//		}
-//		
-//		
-//		//update biases in all layers
-//		for (int i = 0; i < this.b0.length; i++) {
-//			this.b0[i] += - h1Err[i];
-//		}
-//		
-//		for (int i = 0; i < this.b1.length; i++) {
-//			this.b1[i] += - h2Err[i];
-//		}
-//		
-//		for (int i = 0; i < this.b2.length; i++) {
-//			this.b2[i] += - outErr[i];
-//		}
-//		
-//		//update weights
-//		for (int i = 0; i < this.w0.length; i++) {
-//			for (int j = 0; j < this.w0[0].length; j++) {
-//				this.w0[i][j] += - (this.act0[j] * h1Err[i]);
-//			}
-//		}
-//		
-//		for (int i = 0; i < this.w1.length; i++) {
-//			for (int j = 0; j < this.w1[0].length; j++) {
-//				this.w1[i][j] += - (this.act1[j] * h2Err[i]);
-//			}
-//		}
-//		
-//		for (int i = 0; i < this.w2.length; i++) {
-//			for (int j = 0; j < this.w2[0].length; j++) {
-//				this.w2[i][j] += - (this.act2[j] * outErr[i]);
-//			}
-//		}
-//		
-//	}
-	public void backProp(double[] errors) {
-		double[] deltaOut = new double[this.sizes[3]];
+	public void backProp(double[] outputs) {
 		
-		for (int i = 0; i < this.sizes[3]; i++) {
-			deltaOut[i] = dSigmoid(this.act3[i]) * errors[i];
+		double[] delOutC = new double[this.act3.length];
+		double[] outErr = new double[this.act3.length];
+		
+		//create cost derivative vector
+		for (int i = 0; i < delOutC.length; i ++) {
+			delOutC[i] = this.act3[i] - outputs[i];
+			//System.out.println(delOutC[i]);
 		}
 		
-		double[] deltaH2 = new double[this.sizes[2]];
-		
-		for (int i = 0; i < this.sizes[2]; i++) {
-			for (int j = 0; j < this.sizes[3]; j++) {
-				deltaH2[i] = dSigmoid(this.act2[i]) * deltaOut[j] * this.w2[i][j];
-			}
-			
+		//calculate error of output layer
+		for (int i = 0; i < outErr.length; i ++) {
+			outErr[i] = delOutC[i] * dSigmoid(this.z3[i]);
 		}
 		
-		double[] deltaH1 = new double[this.sizes[1]];
+		double[] h2Err = new double[this.act2.length];
+		double[][] wt2 = transpose(this.w2);
+		double[] intH2 = mult(wt2, outErr);
 		
-		for (int i = 0; i < this.sizes[1]; i++) {
-			for (int j = 0; j < this.sizes[2]; j++) {
-				deltaH1[i] = dSigmoid(this.act1[i]) * deltaH2[j] * this.w1[i][j];
+		//calculate error vector of second hidden layer
+		for (int i = 0; i < h2Err.length; i ++) {
+			h2Err[i] = intH2[i] * dSigmoid(this.z2[i]);
+		}
+		
+		double[] h1Err = new double[this.act1.length];
+		double[][] wt1 = transpose(this.w1);
+		double[] intH1 = mult(wt1, h2Err);
+		
+		//calculate error vector of first hidden layer
+		for (int i = 0; i < h1Err.length; i ++) {
+			h1Err[i] = intH1[i] * dSigmoid(this.z1[i]);
+		}
+		
+		
+		//update biases in all layers
+		for (int i = 0; i < this.b0.length; i++) {
+			this.b0[i] += - h1Err[i];
+		}
+		
+		for (int i = 0; i < this.b1.length; i++) {
+			this.b1[i] += - h2Err[i];
+		}
+		
+		for (int i = 0; i < this.b2.length; i++) {
+			this.b2[i] += - outErr[i];
+		}
+		
+		//update weights
+		for (int i = 0; i < this.w0.length; i++) {
+			for (int j = 0; j < this.w0[0].length; j++) {
+				this.w0[i][j] += - (this.act0[j] * h1Err[i]);
 			}
 		}
 		
-		
-		for (int i = 0; i < this.sizes[0]; i++) {
-			for (int j = 0; j < this.sizes[1]; j++){
-				this.w0[i][j] += learnRate * deltaH1[j] * this.act0[i];
+		for (int i = 0; i < this.w1.length; i++) {
+			for (int j = 0; j < this.w1[0].length; j++) {
+				this.w1[i][j] += - (this.act1[j] * h2Err[i]);
 			}
 		}
 		
-		for (int i = 0; i < this.sizes[1]; i++) {
-			for (int j = 0; j < this.sizes[2]; j++){
-				this.w1[i][j] += learnRate * deltaH2[j] * this.act1[i];
+		for (int i = 0; i < this.w2.length; i++) {
+			for (int j = 0; j < this.w2[0].length; j++) {
+				this.w2[i][j] += - (this.act2[j] * outErr[i]);
 			}
 		}
 		
-		for (int i = 0; i < this.sizes[2]; i++) {
-			for (int j = 0; j < this.sizes[3]; j++){
-				this.w2[i][j] += learnRate * deltaOut[j] * this.act2[i];
-			}
-		}
+	}
 	
 	/**
 	 * Transposes an input matrix.
