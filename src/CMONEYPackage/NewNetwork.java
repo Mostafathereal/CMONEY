@@ -113,6 +113,7 @@ public class NewNetwork {
 		//create cost derivative vector
 		for (int i = 0; i < delOutC.length; i ++) {
 			delOutC[i] = this.act3[i] - outputs[i];
+			System.out.println(delOutC[i]);
 		}
 		
 		//calculate error of output layer
