@@ -266,4 +266,39 @@ public class NewNetwork {
 		return sigmoid(x) * (1 - sigmoid(x));
 	}
 	
+	public void write_weights() {
+
+		File file = new File("data/weights.txt");
+
+		
+			FileWriter writer;
+			try {
+				writer = new FileWriter(file);
+				for (int i = 0; i < 16; i++) {
+					for (int j = 0; j < 784; j++) {
+						writer.write(Double.toString(this.w0[i][j]));
+					}
+					writer.write("\n");
+				}
+				
+				for (int i = 0; i < 16; i++) {
+					for (int j = 0; j < 16; j++) {
+						writer.write(Double.toString(this.w1[i][j]));
+					}
+					writer.write("\n");
+				}
+				
+				for (int i = 0; i < 10; i++) {
+					for (int j = 0; j < 16; j++) {
+						writer.write(Double.toString(this.w2[i][j]));
+					}
+					writer.write("\n");
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+	
 }
