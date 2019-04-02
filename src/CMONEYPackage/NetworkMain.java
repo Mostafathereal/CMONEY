@@ -27,6 +27,15 @@ public class NetworkMain {
 		
 		List<int[][]> images = R.getImages("data/t10k-images.idx3-ubyte");
 		
+		int[][] image_set = new int[1000][784];  
+		
+		for(int i = 0; i < 500; i++) {
+			
+			image_set[i] = arrConvert(images.get(i));
+			
+			
+		}
+		
 		
 		
 		// TODO Auto-generated method stub
@@ -35,13 +44,19 @@ public class NetworkMain {
 
 		net.setRandWeights();
 		
-		System.out.print("before training:");
+		System.out.print("before training (soln is " + labels[0] + ") :");
 		
 		int[] input = arrConvert(images.get(0));
 		System.out.println(net.evaluate(input));
 		
 		//net.trainNet(in, out, epochs);
 		
+		//System.out.println("length of data is " + labels.length);
+		
+		
+		System.out.print("after training (soln is " + labels[0] + ") :");
+		
+		net.trainNet(image_set, labels, 500);
 		
 		
 

@@ -147,7 +147,7 @@ public class NewNetwork {
 		for(int i=0; i<this.sizes[1]; i++) {
 			this.act1[i] = 0.0;
 			for(int j=0; j<this.sizes[0]; j++) {
-				this.act1[i] += w0[j][i] * this.act0[j];
+				this.act1[i] += this.w0[i][j] * this.act0[j];
 			}
 			this.act1[i] = sigmoid(this.act1[i]);
 		}
@@ -155,8 +155,8 @@ public class NewNetwork {
 		//hidden layer 2
 		for(int i=0; i<this.sizes[2]; i++) {
 			this.act2[i] = 0.0;
-			for(int j=0; j<this.sizes[0]; j++) {
-				this.act2[j] += this.w1[j][i] * this.act1[j];
+			for(int j=0; j<this.sizes[1]; j++) {
+				this.act2[i] += this.w1[i][j] * this.act1[j];
 			}
 			this.act2[i] = sigmoid(this.act2[i]);
 		}
@@ -165,7 +165,7 @@ public class NewNetwork {
 		for(int i=0; i<this.sizes[3]; i++) {
 			act3[i] = 0.0;
 			for(int j=0; j<this.sizes[2]; j++) {
-				this.act3[i] += this.act2[j] * this.w2[j][i];
+				this.act3[i] += this.act2[j] * this.w2[i][j];
 			}
 			this.act3[i] = sigmoid(this.act3[i]);
 		}
