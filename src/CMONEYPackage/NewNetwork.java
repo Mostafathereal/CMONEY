@@ -20,16 +20,24 @@ public class NewNetwork {
 	
 	private void setRandWeights() {
 		
-		for(int i = 0; i < sizes.length; i++) {
+		for(int i = 0; i < weights.length; i++) {
 			for(int j = 0; j < weights[i].length; j++) {
 				for(int k = 0; k < weights[i][j].length; k++ ) {
-					weights[i][j][k] = -1.0 + (-1.0 - 1.0)* Math.random();
+					weights[i][j][k] = -1.0 + (2.0)* Math.random();
 				}
 			}
 		}
 	}
 	
+	
+	
 	private void setRandBiases() {
+		
+		for(int i = 0; i < biases.length; i++) {
+			for(int j = 0; j < biases[i].length; j++) {
+				biases[i][j] = -1.0 + 2.0*Math.random();
+			}
+		}
 		
 	}
 	
