@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class KagglReader {
 	
 	
-	public static int [][] kag_reader_test(Integer line_num) throws FileNotFoundException {
+	public static int [][] kag_reader_test(int line_num) throws FileNotFoundException {
 		//returned array with 784 pixels
 		//28 x 28 array
 		int [][] img_array = new int[28][28];
@@ -42,7 +42,7 @@ public class KagglReader {
 		return img_array;
 	}
 	
-	public static int [][] kag_reader_train(Integer line_num) throws FileNotFoundException {
+	public static int [][] kag_reader_train(int line_num) throws FileNotFoundException {
 		//returned array with 784 pixels
 		//28 x 28 array
 		int [][] img_array = new int[28][28];
@@ -58,8 +58,8 @@ public class KagglReader {
 		}
 		
 		//print out label
-		System.out.println("Label: " + line.nextToken());
-		
+		//System.out.println("Label: " + line.nextToken());
+		line.nextToken();
 		while (line.hasMoreTokens()) {
 			for (int y = 0; y <= 27; y++) {
 				//System.out.print("line " + y + " ");
@@ -79,7 +79,7 @@ public class KagglReader {
 		return img_array;
 	}
 	
-	public static int kag_reader_train_label(Integer line_num) throws FileNotFoundException {
+	public static int kag_reader_train_label(int line_num) throws FileNotFoundException {
 		
 		Scanner input = new Scanner(new File("data/train.csv"));
 		
