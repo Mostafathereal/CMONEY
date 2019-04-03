@@ -87,7 +87,7 @@ public class NetworkMain {
 //		System.out.print("after training (soln is " + labels[0] + ") :");
 		
 		
-		//net.trainNet(kagImages, kagLabels, 42000);
+		//net.trainNet(kagImages, kagLabels, 1);
 		
 		
 		System.out.println("\n" + labels[10000]);

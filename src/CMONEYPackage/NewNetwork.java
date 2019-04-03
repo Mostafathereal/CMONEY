@@ -114,20 +114,15 @@ public class NewNetwork {
 	}
 	
 	public void trainNet(int in[][], int out[][], int epochs) {
-		for (int j = 0; j < 50; j++) {
-			for(int i = 0; i < epochs; i++) {
+		for (int j = 0; j < epochs; j++) {
+			for(int i = 0; i < out.length; i++) {
 				feedForward(in[i]);
 				backProp(out[i]);
 				if(i % this.batchSize == 0) {
 					update();
-				}
-	//				System.out.println(counter);
-	//				counter++;
-					
-	
+				}					
 			}
 		}
-		
 	}
 	
 	
