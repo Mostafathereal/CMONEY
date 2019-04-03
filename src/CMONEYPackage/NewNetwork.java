@@ -1,9 +1,12 @@
 package CMONEYPackage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 
 public class NewNetwork {
@@ -404,6 +407,167 @@ public class NewNetwork {
 				e.printStackTrace();
 			}
 		}
+		
+		public void read_weights_w0() {
+
+			File file = new File("data/weights.txt");
+
+			double[][] w_0 = new double[16][784];
+
+			try {
+				Scanner input = new Scanner(file);
+
+				StringTokenizer line = new StringTokenizer(input.nextLine(), " ");
+
+				for (int i = 0; i < 16; i++) {
+					for (int j = 0; j < 784; j++) {
+						w_0[i][j] = Double.parseDouble(line.nextToken());
+					}
+					line = new StringTokenizer(input.nextLine(), " ");
+				}
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			w0 = w_0;
+
+		}
+
+		public void read_weights_w1() {
+
+			File file = new File("data/weights.txt");
+
+			double[][] w_1 = new double[16][16];
+		
+
+			try {
+				Scanner input = new Scanner(file);
+
+				StringTokenizer line = new StringTokenizer(input.nextLine(), " ");
+				
+				for (int i = 0; i < 16; i++) {
+					line = new StringTokenizer(input.nextLine(), " ");
+				}
+
+				for (int i = 0; i < 16; i++) {
+					for (int j = 0; j < 16; j++) {
+						w_1[i][j] = Double.parseDouble(line.nextToken());
+					}
+					line = new StringTokenizer(input.nextLine(), " ");
+				}
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			w1 = w_1;
+
+		}
+
+		public void read_weights_w2() {
+			File file = new File("data/weights.txt");
+
+			double[][] w_2 = new double[10][16];
+
+			try {
+				Scanner input = new Scanner(file);
+
+				StringTokenizer line = new StringTokenizer(input.nextLine(), " ");
+				
+				for (int i = 0; i < 32; i++) {
+					line = new StringTokenizer(input.nextLine(), " ");
+				}
+
+				for (int i = 0; i < 10; i++) {
+					for (int j = 0; j < 16; j++) {
+						w_2[i][j] = Double.parseDouble(line.nextToken());
+					}
+					line = new StringTokenizer(input.nextLine(), " ");
+				}
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			w2 = w_2;
+
+		}
+		
+		public void read_all() {
+			read_weights_w0();
+			read_weights_w1();
+			read_weights_w2();	
+		}
+		
+		public void write_biases() {
+			File file = new File("data/biases.txt");
+
+			FileWriter writer;
+			try {
+				writer = new FileWriter(file);
+				for (int i = 0; i < 16; i++) {
+					writer.write(Double.toString(this.b0[i]) + " ");
+				}
+				writer.write("\n");
+				for (int i = 0; i < 16; i++) {
+					writer.write(Double.toString(this.b1[i]) + " ");
+				}
+				writer.write("\n");
+				for (int i = 0; i < 10; i++) {
+					writer.write(Double.toString(this.b2[i]) + " ");
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		public void read_biases() {
+			File file = new File("data/biases.txt");
+
+			double[] b_0 = new double[16];
+			double[] b_1 = new double[16];
+			double[] b_2 = new double[10];
+			
+
+			try {
+				Scanner input = new Scanner(file);
+
+				StringTokenizer line = new StringTokenizer(input.nextLine(), " ");
+
+				for (int i = 0; i < 16; i++) {
+					b_0[i] = Double.parseDouble(line.nextToken());
+				}
+				
+				line = new StringTokenizer(input.nextLine(), " ");
+
+				for (int i = 0; i < 16; i++) {
+					b_1[i] = Double.parseDouble(line.nextToken());
+				}
+				
+				line = new StringTokenizer(input.nextLine(), " ");
+
+				for (int i = 0; i < 10; i++) {
+					b_2[i] = Double.parseDouble(line.nextToken());
+				}
+				
+				input.close();
+
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			b0 = b_0;
+			b1 = b_1;
+			b2 = b_2;
+		}
+
+	}
 	
 	
-}
+
