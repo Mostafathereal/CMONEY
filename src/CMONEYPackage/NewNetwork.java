@@ -30,15 +30,17 @@ public class NewNetwork {
 	private double[] z3 = new double[10];
 	
 	private double learnRate;
+	private int batchSize;
 	
 	public double[] act0;
 	private double[] act1;
 	private double[] act2;
-	private double[] act3;
+	public double[] act3;
 	
 	
 	public  NewNetwork() {
-		this.learnRate = 0.01;
+		this.learnRate = 0.001;
+		this.batchSize = 50;
 		
 		act0 = new double[784];
 		act1 = new double[16];
@@ -57,6 +59,11 @@ public class NewNetwork {
 				maxInd = i;
 			}
 		}
+		
+		for (int i = 0; i < 10; i ++) {
+			System.out.println(this.act3[i]);
+		}
+		
 		return maxInd;
 	}
 	
@@ -86,24 +93,38 @@ public class NewNetwork {
 		return a + (b - a) * Math.random();
 	}
 	
-//	private void setRandBiases() {
-//		
-//		for(int i = 0; i < biases.length; i++) {
-//			for(int j = 0; j < biases[i].length; j++) {
-//				biases[i][j] = -1.0 + 2.0*Math.random();
-//			}
-//		}	
-//	}
+	public void setRandBiases() {
+		
+		for(int j = 0; j < b0.length; j++) {
+			b0[j] = randRange(-1, 1);
+		}
+		
+		for(int j = 0; j < b1.length; j++) {
+			b1[j] = randRange(-1, 1);
+		}
+		
+		for(int j = 0; j < b2.length; j++) {
+			b2[j] = randRange(-1, 1);
+		}
+		
+
+	}
 	
 	public void trainNet(int in[][], int out[][], int epochs) {
-		for(int i = 0; i < epochs; i++) {
+		for (int j = 0; j < 10; j++) {
+			for(int i = 0; i < epochs; i++) {
 				feedForward(in[i]);
 				backProp(out[i]);
-				//if(i % 1 == 0) {
-				update();
-		//		}
-
+				if(i % this.batchSize == 0) {
+					update();
+				}
+	//				System.out.println(counter);
+	//				counter++;
+					
+	
+			}
 		}
+		
 	}
 	
 	
@@ -121,10 +142,10 @@ public class NewNetwork {
 	 */
 	public void backProp(int[] outputs) {
 		
-		System.out.println();
-		System.out.println("Output Activations Before");
+//		System.out.println();
+//		System.out.println("Output Activations Before");
 		for (int i = 0; i < 10; i ++) {
-			System.out.println(this.act3[i]);
+//			System.out.println(this.act3[i]);
 		}
 		
 		double[] delOutC = new double[this.act3.length];
@@ -138,10 +159,10 @@ public class NewNetwork {
 		
 		//calculate error of output layer
 		for (int i = 0; i < outErr.length; i ++) {
-			outErr[i] = delOutC[i] * dSigmoid(this.z3[i]);
-			System.out.println();
-			System.out.println("Error on " + i);
-			System.out.println(outErr[i]);
+			outErr[i] = delOutC[i] * dSigmoid(this.z3[i])/2;
+//			System.out.println();
+//			System.out.println("Error on " + i);
+//			System.out.println(outErr[i]);
 		}
 		
 		
@@ -151,7 +172,7 @@ public class NewNetwork {
 		
 		//calculate error vector of second hidden layer
 		for (int i = 0; i < h2Err.length; i ++) {
-			h2Err[i] = intH2[i] * dSigmoid(this.z2[i]);
+			h2Err[i] = intH2[i] * dSigmoid(this.z2[i])/2;
 		}
 		
 		double[] h1Err = new double[this.act1.length];
@@ -160,7 +181,7 @@ public class NewNetwork {
 		
 		//calculate error vector of first hidden layer
 		for (int i = 0; i < h1Err.length; i ++) {
-			h1Err[i] = intH1[i] * dSigmoid(this.z1[i]);
+			h1Err[i] = intH1[i] * dSigmoid(this.z1[i])/2;
 		}
 		
 		
@@ -196,10 +217,11 @@ public class NewNetwork {
 			}
 		}
 		
-		System.out.println();
-		System.out.println("Output Activations After");
+		
+//		System.out.println();
+//		System.out.println("Output Activations After");
 		for (int i = 0; i < 10; i ++) {
-			System.out.println(this.act3[i]);
+//			System.out.println(this.act3[i]);
 		}
 	}
 	
@@ -208,41 +230,41 @@ public class NewNetwork {
 //		System.out.println();
 //		System.out.println("db");
 //		for (int i = 0; i < 10; i ++) {
-//			System.out.println(this.db0[i]);
+////			System.out.println(this.db0[i]);
 //		}
-//		
+		
 		for(int i = 0; i < b0.length; i++) {
-			b0[i] += db0[i]/10 * learnRate;
+			b0[i] -= db0[i]/this.batchSize * learnRate;
 			db0[i] = 0;
 		}
 		
 		for(int i = 0; i < b1.length; i++) {
-			b1[i] += db1[i]/10 * learnRate;
+			b1[i] -= db1[i]/this.batchSize * learnRate;
 			db1[i] = 0;
 		}
 		
 		for(int i = 0; i < b2.length; i++) {
-			b2[i] += db2[i]/10 * learnRate;
+			b2[i] -= db2[i]/this.batchSize * learnRate;
 			db2[i] = 0;
 		}
 		
 		for(int i = 0; i < w0.length; i++) {
 			for(int j = 0; j < w0[0].length; j++) {
-				w0[i][j] += dw0[i][j]/10 * learnRate;
+				w0[i][j] -= dw0[i][j]/this.batchSize * learnRate;
 				dw0[i][j] = 0;
 			}
 		}
 		
 		for(int i = 0; i < w1.length; i++) {
 			for(int j = 0; j < w1[0].length; j++) {
-				w1[i][j] += dw1[i][j]/10 * learnRate;
+				w1[i][j] -= dw1[i][j]/this.batchSize * learnRate;
 				dw1[i][j] = 0;
 			}
 		}
 		
 		for(int i = 0; i < w2.length; i++) {
 			for(int j = 0; j < w2[0].length; j++) {
-				w2[i][j] += dw2[i][j]/10 * learnRate;
+				w2[i][j] -= dw2[i][j]/this.batchSize * learnRate;
 				dw2[i][j] = 0;
 			}
 		}
