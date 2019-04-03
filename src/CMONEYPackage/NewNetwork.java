@@ -111,7 +111,7 @@ public class NewNetwork {
 	}
 	
 	public void trainNet(int in[][], int out[][], int epochs) {
-		for (int j = 0; j < 100; j++) {
+		for (int j = 0; j < 50; j++) {
 			for(int i = 0; i < epochs; i++) {
 				feedForward(in[i]);
 				backProp(out[i]);
@@ -381,21 +381,21 @@ public class NewNetwork {
 				writer = new FileWriter(file);
 				for (int i = 0; i < 16; i++) {
 					for (int j = 0; j < 784; j++) {
-						writer.write(Double.toString(this.w0[i][j]));
+						writer.write(Double.toString(this.w0[i][j])  + " ");
 					}
 					writer.write("\n");
 				}
 				
 				for (int i = 0; i < 16; i++) {
 					for (int j = 0; j < 16; j++) {
-						writer.write(Double.toString(this.w1[i][j]));
+						writer.write(Double.toString(this.w1[i][j]) + " ");
 					}
 					writer.write("\n");
 				}
 				
 				for (int i = 0; i < 10; i++) {
 					for (int j = 0; j < 16; j++) {
-						writer.write(Double.toString(this.w2[i][j]));
+						writer.write(Double.toString(this.w2[i][j])  + " ");
 					}
 					writer.write("\n");
 				}

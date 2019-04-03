@@ -1,4 +1,4 @@
-package ImageProcessing;
+package CMONEYPackage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class KagglReader {
 	
 	
-	public int [][] kag_reader_test(int line_num) throws FileNotFoundException {
+	public static int [][] kag_reader_test(int line_num) throws FileNotFoundException {
 		//returned array with 784 pixels
 		//28 x 28 array
 		int [][] img_array = new int[28][28];
@@ -42,7 +42,7 @@ public class KagglReader {
 		return img_array;
 	}
 	
-	public int [][] kag_reader_train(int line_num) throws FileNotFoundException {
+	public static int [][] kag_reader_train(int line_num) throws FileNotFoundException {
 		//returned array with 784 pixels
 		//28 x 28 array
 		int [][] img_array = new int[28][28];
@@ -79,7 +79,7 @@ public class KagglReader {
 		return img_array;
 	}
 	
-	public int kag_reader_train_label(int line_num) throws FileNotFoundException {
+	public static int kag_reader_train_label(int line_num) throws FileNotFoundException {
 		
 		Scanner input = new Scanner(new File("data/train.csv"));
 		
@@ -102,4 +102,8 @@ public class KagglReader {
 		return label;
 	}
 	
+	public static void main(String[] args) throws FileNotFoundException { 
+  
+        System.out.println(kag_reader_train_label(19));
+    } 
 }
