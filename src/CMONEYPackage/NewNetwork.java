@@ -39,8 +39,8 @@ public class NewNetwork {
 	
 	
 	public  NewNetwork() {
-		this.learnRate = 0.001;
-		this.batchSize = 50;
+		this.learnRate = 0.1;
+		this.batchSize = 10;
 		
 		act0 = new double[784];
 		act1 = new double[16];
@@ -363,7 +363,7 @@ public class NewNetwork {
 	}
 	
 	private static double sigmoid(double x) {
-		double activation = 1 / (1 + Math.exp(x));
+		double activation = 1 / (1 + Math.exp(-x));
 		return activation;
 	}
 	
