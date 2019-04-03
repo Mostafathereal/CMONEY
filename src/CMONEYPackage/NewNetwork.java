@@ -111,7 +111,7 @@ public class NewNetwork {
 	}
 	
 	public void trainNet(int in[][], int out[][], int epochs) {
-		for (int j = 0; j < 10; j++) {
+		for (int j = 0; j < 100; j++) {
 			for(int i = 0; i < epochs; i++) {
 				feedForward(in[i]);
 				backProp(out[i]);

@@ -61,6 +61,12 @@ public class NetworkMain {
 		int[] input2 = arrConvert(images.get(9999));
 		int[] input3 = arrConvert(images.get(9998));
 		int[] input4 = arrConvert(images.get(9997));
+		int[] input5 = arrConvert(images.get(9996));
+		int[] input6 = arrConvert(images.get(9995));
+		int[] input7 = arrConvert(images.get(9994));
+		int[] input8 = arrConvert(images.get(9993));
+		int[] input9 = arrConvert(images.get(9992));
+		int[] input10 = arrConvert(images.get(9991));
 		
 		
 		//System.out.println(net.evaluate(input));
@@ -71,26 +77,44 @@ public class NetworkMain {
 		
 		
 		System.out.println("\n" + labels[10000]);
-		
 		System.out.println(net.evaluate(input));
 		
 		
 		System.out.println("\n" + labels[9999]);
-		
 		System.out.println(net.evaluate(input2));
 		
 		
 		System.out.println("\n" + labels[9998]);
-		
 		System.out.println(net.evaluate(input3));
 		
 		
 		System.out.println("\n" + labels[9997]);
-		
 		System.out.println(net.evaluate(input4));
 		
-		System.out.println("");
-
+		
+		System.out.println("\n" + labels[9996]);
+		System.out.println(net.evaluate(input5));
+		
+		
+		System.out.println("\n" + labels[9995]);
+		System.out.println(net.evaluate(input6));
+		
+		
+		System.out.println("\n" + labels[9994]);
+		System.out.println(net.evaluate(input7));
+		
+		
+		System.out.println("\n" + labels[9993]);
+		System.out.println(net.evaluate(input8));
+		
+		
+		System.out.println("\n" + labels[9992]);
+		System.out.println(net.evaluate(input9));
+		
+		
+		System.out.println("\n" + labels[9991]);
+		System.out.println(net.evaluate(input10));
+		
 		
 		//System.out.println(images.size());	
 		
