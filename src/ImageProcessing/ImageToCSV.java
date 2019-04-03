@@ -14,8 +14,8 @@ import javax.imageio.ImageIO;
  */
 public class ImageToCSV {
 
-	public static Integer[][] img_to_csv(BufferedImage img){
-		Integer [][] img_array = new Integer[28][28];
+	public static int[][] img_to_csv(BufferedImage img){
+		int [][] img_array = new int[28][28];
 
 		//save alpha values for each pixel
 		//convert RGB values to alpha values to differentiate number, assuming colours closer to white are backround
@@ -41,7 +41,7 @@ public class ImageToCSV {
 		return img_array;
 	}
 
-	public static BufferedImage csv_to_img(Integer [][] img_array){
+	public static BufferedImage csv_to_img(int [][] img_array){
 		BufferedImage img = new BufferedImage(28,28,5);
 
 		//save alpha values for each pixel
@@ -76,7 +76,7 @@ public class ImageToCSV {
 	      System.out.println(e);
 	    }
 
-	    Integer [][] img_csv = img_to_csv(img);
+	    int [][] img_csv = img_to_csv(img);
 
 	    for (int y = 0; y <= 27; y++) {
 			for (int x = 0; x <= 27; x++) {
