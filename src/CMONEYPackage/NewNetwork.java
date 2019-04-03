@@ -397,17 +397,20 @@ public class NewNetwork {
 					}
 					writer.write("\n");
 				}
+				writer.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
+			
+			
 		}
 		
-		public void read_weights_w0() {
+		private void read_weights_w0() {
 
 			File file = new File("data/weights.txt");
-
-			double[][] w_0 = new double[16][784];
 
 			try {
 				Scanner input = new Scanner(file);
@@ -416,26 +419,19 @@ public class NewNetwork {
 
 				for (int i = 0; i < 16; i++) {
 					for (int j = 0; j < 784; j++) {
-						w_0[i][j] = Double.parseDouble(line.nextToken());
+						w0[i][j] = Double.parseDouble(line.nextToken());
 					}
 					line = new StringTokenizer(input.nextLine(), " ");
 				}
-
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			w0 = w_0;
-
 		}
 
-		public void read_weights_w1() {
+		private void read_weights_w1() {
 
-			File file = new File("data/weights.txt");
-
-			double[][] w_1 = new double[16][16];
-		
+			File file = new File("data/weights.txt");		
 
 			try {
 				Scanner input = new Scanner(file);
@@ -448,7 +444,7 @@ public class NewNetwork {
 
 				for (int i = 0; i < 16; i++) {
 					for (int j = 0; j < 16; j++) {
-						w_1[i][j] = Double.parseDouble(line.nextToken());
+						w1[i][j] = Double.parseDouble(line.nextToken());
 					}
 					line = new StringTokenizer(input.nextLine(), " ");
 				}
@@ -458,27 +454,23 @@ public class NewNetwork {
 				e.printStackTrace();
 			}
 
-			w1 = w_1;
-
 		}
 
-		public void read_weights_w2() {
+		private void read_weights_w2() {
 			File file = new File("data/weights.txt");
-
-			double[][] w_2 = new double[10][16];
 
 			try {
 				Scanner input = new Scanner(file);
-
+				
 				StringTokenizer line = new StringTokenizer(input.nextLine(), " ");
 				
-				for (int i = 0; i < 32; i++) {
+				for (int i = 0; i < 31; i++) {
 					line = new StringTokenizer(input.nextLine(), " ");
 				}
 
 				for (int i = 0; i < 10; i++) {
 					for (int j = 0; j < 16; j++) {
-						w_2[i][j] = Double.parseDouble(line.nextToken());
+						w2[i][j] = Double.parseDouble(line.nextToken());
 					}
 					line = new StringTokenizer(input.nextLine(), " ");
 				}
@@ -487,9 +479,6 @@ public class NewNetwork {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			w2 = w_2;
-
 		}
 		
 		public void read_all() {
@@ -515,6 +504,7 @@ public class NewNetwork {
 				for (int i = 0; i < 10; i++) {
 					writer.write(Double.toString(this.b2[i]) + " ");
 				}
+				writer.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -523,31 +513,25 @@ public class NewNetwork {
 		
 		public void read_biases() {
 			File file = new File("data/biases.txt");
-
-			double[] b_0 = new double[16];
-			double[] b_1 = new double[16];
-			double[] b_2 = new double[10];
-			
-
 			try {
 				Scanner input = new Scanner(file);
 
 				StringTokenizer line = new StringTokenizer(input.nextLine(), " ");
 
 				for (int i = 0; i < 16; i++) {
-					b_0[i] = Double.parseDouble(line.nextToken());
+					b0[i] = Double.parseDouble(line.nextToken());
 				}
 				
 				line = new StringTokenizer(input.nextLine(), " ");
 
 				for (int i = 0; i < 16; i++) {
-					b_1[i] = Double.parseDouble(line.nextToken());
+					b1[i] = Double.parseDouble(line.nextToken());
 				}
 				
 				line = new StringTokenizer(input.nextLine(), " ");
 
 				for (int i = 0; i < 10; i++) {
-					b_2[i] = Double.parseDouble(line.nextToken());
+					b2[i] = Double.parseDouble(line.nextToken());
 				}
 				
 				input.close();
@@ -557,9 +541,6 @@ public class NewNetwork {
 				e.printStackTrace();
 			}
 
-			b0 = b_0;
-			b1 = b_1;
-			b2 = b_2;
 		}
 
 	}

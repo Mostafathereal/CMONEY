@@ -35,7 +35,7 @@ public class ImageToCSV {
 
 				System.out.println(r);
 
-				int a = 255-rgb_avg;
+				int a = rgb_avg;
 				img_array[y][x] = a;
 			}
 		}

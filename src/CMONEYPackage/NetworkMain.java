@@ -25,8 +25,13 @@ public class NetworkMain {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		NewNetwork net = new NewNetwork(); 
-		net.setRandWeights();
-		net.setRandBiases();
+		
+//		net.setRandWeights();
+//		net.setRandBiases();
+//		
+		net.read_all();
+		net.read_biases();
+		
 	    MnistIReader R = (MnistIReader) new MnistIReader();
 
 		
@@ -46,7 +51,7 @@ public class NetworkMain {
 			label_set[i] = net.genOutputs(labels[i]); 
 		}
 
-		net.trainNet(image_set, label_set, 60000);
+		//net.trainNet(image_set, label_set, 100);
 		
 		System.out.print("\n\n --------------------  Done Mnist ---------------------------- \n\n");
 		
@@ -80,15 +85,6 @@ public class NetworkMain {
 		int[] input8 = arrConvert(images.get(9993));
 		int[] input9 = arrConvert(images.get(9992));
 		int[] input10 = arrConvert(images.get(9991));
-		
-		
-		//System.out.println(net.evaluate(input));
-//		System.out.println("length of data is " + labels.length);	
-//		System.out.print("after training (soln is " + labels[0] + ") :");
-		
-		
-		//net.trainNet(kagImages, kagLabels, 1);
-		
 		
 		System.out.println("\n" + labels[10000]);
 		System.out.println(net.evaluate(input));
@@ -128,11 +124,9 @@ public class NetworkMain {
 		
 		System.out.println("\n" + labels[9991]);
 		System.out.println(net.evaluate(input10));
-		
-		
-		//System.out.println(images.size());	
-		
-		net.write_weights();
+				
+//		net.write_weights();
+//		net.write_biases();
 
 	}
 
