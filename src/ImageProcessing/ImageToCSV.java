@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
 
 /**
  * Converts a given 28x28 pixel image to an integer double array to match csv format in dataset
@@ -70,7 +71,7 @@ public class ImageToCSV {
 
 	    //read image
 	    try{
-	      f = new File("data/sample_pictures/raymond_5_bold-28x28.png");
+	      f = new File("data/IMG_7455.jpg");
 	      img = ImageIO.read(f);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -88,7 +89,7 @@ public class ImageToCSV {
 	    BufferedImage new_img = csv_to_img(img_csv);
 
 	    try{
-	        f = new File("data/sample_pictures/test-sraymond_5_bold-28x28-new1.png");
+	        f = new File("data/test5");
 	        ImageIO.write(new_img, "png", f);
 	      }catch(IOException e){
 	        System.out.println(e);

@@ -118,6 +118,7 @@ public class NetworkMain {
 		
 		//System.out.println(images.size());	
 		
+		net.write_weights();
 
 	}
 
