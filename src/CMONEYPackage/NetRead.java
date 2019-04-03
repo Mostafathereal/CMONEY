@@ -1,6 +1,7 @@
 package CMONEYPackage;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import ImageProcessing.MnistIReader;
@@ -19,12 +20,12 @@ public class NetRead {
 		return x;
 	}
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		
 		
 		NewNetwork network = new NewNetwork();
 		
-		network.read_all();
+		network.readAllW();
 		network.read_biases();
 		
 	    MnistIReader R = (MnistIReader) new MnistIReader();

@@ -2,6 +2,7 @@ package CMONEYPackage;
 
 import java.util.List;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,13 +24,13 @@ public class NetworkMain {
 	}
 
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		NewNetwork net = new NewNetwork(); 
 		
 //		net.setRandWeights();
 //		net.setRandBiases();
 //		
-		net.read_all();
+		net.readAllW();
 		net.read_biases();
 		
 	    MnistIReader R = (MnistIReader) new MnistIReader();
@@ -125,8 +126,8 @@ public class NetworkMain {
 		System.out.println("\n" + labels[9991]);
 		System.out.println(net.evaluate(input10));
 				
-//		net.write_weights();
-//		net.write_biases();
+		net.write_weights();
+		net.write_biases();
 
 	}
 
