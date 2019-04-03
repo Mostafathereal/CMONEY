@@ -12,12 +12,18 @@ public class NewNetwork {
 	private double[][] w0 = new double[16][784];
 	private double[][] w1 = new double[16][16];
 	private double[][] w2 = new double[10][16];
+	private double[][] dw0 = new double[16][784];
+	private double[][] dw1 = new double[16][16];
+	private double[][] dw2 = new double[10][16];
 	
 	Random rand = new Random(System.currentTimeMillis());
 	
 	private double[] b0 = new double[16];
 	private double[] b1 = new double[16];
 	private double[] b2 = new double[10];
+	private double[] db0 = new double[16];
+	private double[] db1 = new double[16];
+	private double[] db2 = new double[10];
 	
 	private double[] z1 = new double[16];
 	private double[] z2 = new double[16];
@@ -32,7 +38,7 @@ public class NewNetwork {
 	
 	
 	public  NewNetwork() {
-		this.learnRate = 0.1;
+		this.learnRate = 0.01;
 		
 		act0 = new double[784];
 		act1 = new double[16];
@@ -91,13 +97,12 @@ public class NewNetwork {
 	
 	public void trainNet(int in[][], int out[][], int epochs) {
 		for(int i = 0; i < epochs; i++) {
-			for(int j = 0; j < in.length; j++) {
 				feedForward(in[i]);
-				double[] errors = new double[10];
-				for (int k = 0; k < this.sizes[3]; k++)
-					errors[k] = out[j][k] - this.act3[k];
-				backProp(errors);
-			}
+				backProp(out[i]);
+				//if(i % 1 == 0) {
+				update();
+		//		}
+
 		}
 	}
 	
@@ -107,13 +112,20 @@ public class NewNetwork {
 		outputs[num] = 1;
 		return outputs;
 	}
+
 	
 	/**
 	 * Goes through the neural network backwards layer by layer calculating the error of each activation, 
 	 * then adjusts the weights and biases based on the cost function derivative to train the neural network.
 	 * @param outputs The array of values of the desired activations in the output layer.
 	 */
-	public void backProp(double[] outputs) {
+	public void backProp(int[] outputs) {
+		
+		System.out.println();
+		System.out.println("Output Activations Before");
+		for (int i = 0; i < 10; i ++) {
+			System.out.println(this.act3[i]);
+		}
 		
 		double[] delOutC = new double[this.act3.length];
 		double[] outErr = new double[this.act3.length];
@@ -127,7 +139,11 @@ public class NewNetwork {
 		//calculate error of output layer
 		for (int i = 0; i < outErr.length; i ++) {
 			outErr[i] = delOutC[i] * dSigmoid(this.z3[i]);
+			System.out.println();
+			System.out.println("Error on " + i);
+			System.out.println(outErr[i]);
 		}
+		
 		
 		double[] h2Err = new double[this.act2.length];
 		double[][] wt2 = transpose(this.w2);
@@ -150,35 +166,90 @@ public class NewNetwork {
 		
 		//update biases in all layers
 		for (int i = 0; i < this.b0.length; i++) {
-			this.b0[i] += - h1Err[i];
+			this.db0[i] += h1Err[i];
 		}
 		
 		for (int i = 0; i < this.b1.length; i++) {
-			this.b1[i] += - h2Err[i];
+			this.db1[i] += h2Err[i];
 		}
 		
 		for (int i = 0; i < this.b2.length; i++) {
-			this.b2[i] += - outErr[i];
+			this.db2[i] += outErr[i];
 		}
 		
 		//update weights
 		for (int i = 0; i < this.w0.length; i++) {
 			for (int j = 0; j < this.w0[0].length; j++) {
-				this.w0[i][j] += - (this.act0[j] * h1Err[i]);
+				this.dw0[i][j] += (this.act0[j] * h1Err[i]);
 			}
 		}
 		
 		for (int i = 0; i < this.w1.length; i++) {
 			for (int j = 0; j < this.w1[0].length; j++) {
-				this.w1[i][j] += - (this.act1[j] * h2Err[i]);
+				this.dw1[i][j] += (this.act1[j] * h2Err[i]);
 			}
 		}
 		
 		for (int i = 0; i < this.w2.length; i++) {
 			for (int j = 0; j < this.w2[0].length; j++) {
-				this.w2[i][j] += - (this.act2[j] * outErr[i]);
+				this.dw2[i][j] += (this.act2[j] * outErr[i]);
 			}
 		}
+		
+		System.out.println();
+		System.out.println("Output Activations After");
+		for (int i = 0; i < 10; i ++) {
+			System.out.println(this.act3[i]);
+		}
+	}
+	
+	private void update() {
+		
+//		System.out.println();
+//		System.out.println("db");
+//		for (int i = 0; i < 10; i ++) {
+//			System.out.println(this.db0[i]);
+//		}
+//		
+		for(int i = 0; i < b0.length; i++) {
+			b0[i] += db0[i]/10 * learnRate;
+			db0[i] = 0;
+		}
+		
+		for(int i = 0; i < b1.length; i++) {
+			b1[i] += db1[i]/10 * learnRate;
+			db1[i] = 0;
+		}
+		
+		for(int i = 0; i < b2.length; i++) {
+			b2[i] += db2[i]/10 * learnRate;
+			db2[i] = 0;
+		}
+		
+		for(int i = 0; i < w0.length; i++) {
+			for(int j = 0; j < w0[0].length; j++) {
+				w0[i][j] += dw0[i][j]/10 * learnRate;
+				dw0[i][j] = 0;
+			}
+		}
+		
+		for(int i = 0; i < w1.length; i++) {
+			for(int j = 0; j < w1[0].length; j++) {
+				w1[i][j] += dw1[i][j]/10 * learnRate;
+				dw1[i][j] = 0;
+			}
+		}
+		
+		for(int i = 0; i < w2.length; i++) {
+			for(int j = 0; j < w2[0].length; j++) {
+				w2[i][j] += dw2[i][j]/10 * learnRate;
+				dw2[i][j] = 0;
+			}
+		}
+		
+		
+		
+	
 		
 	}
 	
@@ -244,7 +315,8 @@ public class NewNetwork {
 			for(int j=0; j<this.sizes[0]; j++) {
 				this.act1[i] += this.w0[i][j] * this.act0[j];
 			}
-			this.act1[i] = sigmoid(this.act1[i]);
+			this.z1[i] = this.act1[i] + this.b0[i];
+			this.act1[i] = sigmoid(this.act1[i] + this.b0[i]);
 		}
 		
 		//hidden layer 2
@@ -253,7 +325,8 @@ public class NewNetwork {
 			for(int j=0; j<this.sizes[1]; j++) {
 				this.act2[i] += this.w1[i][j] * this.act1[j];
 			}
-			this.act2[i] = sigmoid(this.act2[i]);
+			this.z2[i] = this.act2[i] + this.b1[i];
+			this.act2[i] = sigmoid(this.act2[i] + this.b1[i]);
 		}
 		
 		//output layer
@@ -262,7 +335,8 @@ public class NewNetwork {
 			for(int j=0; j<this.sizes[2]; j++) {
 				this.act3[i] += this.act2[j] * this.w2[i][j];
 			}
-			this.act3[i] = sigmoid(this.act3[i]);
+			this.z3[i] = this.act3[i] + this.b2[i];
+			this.act3[i] = sigmoid(this.act3[i] + this.b2[i]);
 		}
 	}
 	

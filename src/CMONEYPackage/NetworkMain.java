@@ -14,9 +14,9 @@ public class NetworkMain {
 		int counter = 0;
 		for(int i = 0; i < arr.length; i++) {
 			for(int j = 0; j < arr[0].length; j++) {
-				x[counter] = arr[i][j];
+				x[28*i + j] = arr[i][j];
 			}
-			counter++;
+			
 		}
 		return x;
 	}
@@ -47,7 +47,7 @@ public class NetworkMain {
 			System.out.println("");
 		}
 		
-		for(int i = 0; i < 500; i++) {
+		for(int i = 0; i < 1000; i++) {
 			
 			image_set[i] = arrConvert(images.get(i));
 			label_set[i] = net.genOutputs(labels[i]); 
@@ -55,10 +55,7 @@ public class NetworkMain {
 			
 		}
 		
-		
-		
-		 TODO Auto-generated method stub
-		
+	
 
 		net.setRandWeights();
 		
@@ -67,7 +64,6 @@ public class NetworkMain {
 		int[] input = arrConvert(images.get(0));
 		System.out.println(net.evaluate(input));
 		
-		net.trainNet(in, out, epochs);
 		
 		System.out.println("length of data is " + labels.length);
 		
@@ -77,17 +73,33 @@ public class NetworkMain {
 
 		
 		
-		net.trainNet(image_set, label_set, 500);
+		net.trainNet(image_set, label_set, 1000);
 		
-		for(int k = 0; k < 784; k++) {
-			System.out.println(image_set[0][k]);
-		}
+//		for(int k = 0; k < 784; k++) {
+//			System.out.print(image_set[0][k]);
+//			for(int i = 0; i < 10; i++) {
+//				System.out.print(" " + label_set[k][i]);
+//			}
+//			System.out.println("");
+//		}
+		
 		
 		System.out.println(net.evaluate(input));
+		
+		System.out.println("");
 
 		
+		System.out.println("");
 		
+		int[] a = net.genOutputs(1);
 		
+		System.out.println();
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.print(a[i] + " ");
+		}
+
+
 		
 
 	}
