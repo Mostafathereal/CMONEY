@@ -25,14 +25,14 @@ public class KagglReader {
 		
 		while (line.hasMoreTokens()) {
 			for (int y = 0; y <= 27; y++) {
-				System.out.print("line " + y + " ");
+				//System.out.print("line " + y + " ");
 				
 				for (int x = 0; x <= 27; x++) {
 					img_array[y][x] = Integer.parseInt(line.nextToken());
-					System.out.print(img_array[y][x]);
+					//System.out.print(img_array[y][x]);
 				}
 				
-				System.out.println();
+				//System.out.println();
 				
 			}
 		}
@@ -62,14 +62,14 @@ public class KagglReader {
 		
 		while (line.hasMoreTokens()) {
 			for (int y = 0; y <= 27; y++) {
-				System.out.print("line " + y + " ");
+				//System.out.print("line " + y + " ");
 				
 				for (int x = 0; x <= 27; x++) {
 					img_array[y][x] = Integer.parseInt(line.nextToken());
-					System.out.print(img_array[y][x]);
+					//System.out.print(img_array[y][x]);
 				}
 				
-				System.out.println();
+				//System.out.println();
 				
 			}
 		}
@@ -95,7 +95,7 @@ public class KagglReader {
 		int label;
 		
 		label = Integer.parseInt(line.nextToken());
-		System.out.println("Label: " + label);
+		//System.out.println("Label: " + label);
 		
 		input.close();
 
