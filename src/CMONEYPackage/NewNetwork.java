@@ -65,9 +65,9 @@ public class NewNetwork {
 			}
 		}
 		
-		for (int i = 0; i < 10; i ++) {
-			System.out.println(this.act3[i]);
-		}
+//		for (int i = 0; i < 10; i ++) {
+//			System.out.println(this.act3[i]);
+//		}
 		
 		return maxInd;
 	}
@@ -439,6 +439,37 @@ public class NewNetwork {
 		
 		reader.close();
 		
+	}
+	
+	public void readAllB() throws IOException {
+		BufferedReader reader;
+		
+		reader = new BufferedReader(new FileReader("data/biases.txt"));
+		
+		String line;
+		
+		String[] arrLine;
+		
+		
+		line = reader.readLine();
+		arrLine = line.split(" ");
+		for(int i = 0; i < arrLine.length; i++) {
+			b0[i] = Double.parseDouble(arrLine[i]);
+		}
+		
+		line = reader.readLine();
+		arrLine = line.split(" ");
+		for(int i = 0; i < arrLine.length; i++) {
+			b1[i] = Double.parseDouble(arrLine[i]);
+		}
+		
+		line = reader.readLine();
+		arrLine = line.split(" ");
+		for(int i = 0; i < arrLine.length; i++) {
+			b2[i] = Double.parseDouble(arrLine[i]);
+		}
+		
+		reader.close();
 	}
 		
 		public void write_biases() {
