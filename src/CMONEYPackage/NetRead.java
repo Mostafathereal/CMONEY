@@ -127,6 +127,7 @@ public class NetRead {
 		ITC.mai(args[0]);
 		
 		int[] img = ImageToCSV.getAR();
+		//int[] img = image_set[3];
 		
 		
 		for(int j = 0; j < 28; j++) {
@@ -135,8 +136,6 @@ public class NetRead {
 			}
 			System.out.println("\n");
 		}
-		
-		
 		System.out.println("YOUR NUMBER IS: " + network.evaluate(img));
 		
 		
