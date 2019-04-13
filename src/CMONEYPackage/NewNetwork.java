@@ -65,9 +65,6 @@ public class NewNetwork {
 			}
 		}
 		
-//		for (int i = 0; i < 10; i ++) {
-//			System.out.println(this.act3[i]);
-//		}
 		
 		return maxInd;
 	}
