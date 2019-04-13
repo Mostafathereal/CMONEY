@@ -27,11 +27,11 @@ public class NetworkMain {
 	public static void main(String[] args) throws IOException {
 		NewNetwork net = new NewNetwork(); 
 		
-//		net.setRandWeights();
-//		net.setRandBiases();
-//		
-		net.readAllW();
-		net.read_biases();
+		net.setRandWeights();
+		net.setRandBiases();
+	
+//		net.readAllW();
+//		net.read_biases();
 		
 	    MnistIReader R = (MnistIReader) new MnistIReader();
 
@@ -52,15 +52,15 @@ public class NetworkMain {
 			label_set[i] = net.genOutputs(labels[i]); 
 		}
 
-		//net.trainNet(image_set, label_set, 100);
+		net.trainNet(image_set, label_set, 300);
 		
 		System.out.print("\n\n --------------------  Done Mnist ---------------------------- \n\n");
 		
 		
-		for(int i = 1; i < 100; i++) {
-			kagLabels[i] = net.genOutputs(KagglReader.kag_reader_train_label(i));
-			kagImages[i] = arrConvert(KagglReader.kag_reader_train(i));
-		}
+//		for(int i = 1; i < 100; i++) {
+//			kagLabels[i] = net.genOutputs(KagglReader.kag_reader_train_label(i));
+//			kagImages[i] = arrConvert(KagglReader.kag_reader_train(i));
+//		}
 		
 		
 		

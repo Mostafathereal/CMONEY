@@ -14,6 +14,14 @@ import java.awt.Graphics2D;
  *
  */
 public class ImageToCSV {
+	
+	public static int[] imagee = new int[784];
+	
+	public static int[] getAR() {
+		return imagee;
+	}
+	
+	
 
 	public static int[][] img_to_csv(BufferedImage img){
 		int [][] img_array = new int[28][28];
@@ -33,45 +41,47 @@ public class ImageToCSV {
 
 				int rgb_avg = (r+g+b)/3;
 
-				System.out.println(r);
+				//System.out.println(r);
 
-				int a = rgb_avg;
+				int a = 255 - rgb_avg;
 				img_array[y][x] = a;
 			}
 		}
 		return img_array;
 	}
 
-	public static BufferedImage csv_to_img(int [][] img_array){
-		BufferedImage img = new BufferedImage(28,28,5);
-
-		//save alpha values for each pixel
-		//convert RGB values to alpha values to differentiate number, assuming colours closer to white are backround
-		//and colours closer to black as the handwritten number
-		//need to convert because for real images taken from phone, transparency will be at minimum for all pixels
-		//(no differentiation between background and foreground)
-		for (int y = 0; y <= 27; y++) {
-			for (int x = 0; x <= 27; x++) {
-
-				int r = img_array[y][x];
-				int g = img_array[y][x];
-				int b = img_array[y][x];
-				int a = img_array[y][x];
-
-				int p = (a<<24) | (r<<16) | (g<<8) | b;
-			    img.setRGB(x, y, p);
-			}
-		}
-		return img;
-	}
-
-	public static void main(String args[])throws IOException{
+//	public static BufferedImage csv_to_img(int [][] img_array){
+//		BufferedImage img = new BufferedImage(28,28,5);
+//
+//		//save alpha values for each pixel
+//		//convert RGB values to alpha values to differentiate number, assuming colours closer to white are backround
+//		//and colours closer to black as the handwritten number
+//		//need to convert because for real images taken from phone, transparency will be at minimum for all pixels
+//		//(no differentiation between background and foreground)
+//		for (int y = 0; y <= 27; y++) {
+//			for (int x = 0; x <= 27; x++) {
+//
+//				int r = img_array[y][x];
+//				int g = img_array[y][x];
+//				int b = img_array[y][x];
+//				int a = img_array[y][x];
+//
+//				int p = (a<<24) | (r<<16) | (g<<8) | b;
+//			    img.setRGB(x, y, p);
+//			}
+//		}
+//		return img;
+//	}
+	
+	public static void mai(String fName) {
 	    BufferedImage img = null;
 	    File f = null;
+	    
+	    int pix;
 
 	    //read image
 	    try{
-	      f = new File("data/IMG_7455.jpg");
+	      f = new File("data/" + fName + ".png");
 	      img = ImageIO.read(f);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -81,19 +91,19 @@ public class ImageToCSV {
 
 	    for (int y = 0; y <= 27; y++) {
 			for (int x = 0; x <= 27; x++) {
-				System.out.print(img_csv[y][x] + " ");
+				pix = img_csv[y][x];
+				imagee[28*y + x] = pix;
 			}
-			System.out.println();
 		}
 
-	    BufferedImage new_img = csv_to_img(img_csv);
-
-	    try{
-	        f = new File("data/test5");
-	        ImageIO.write(new_img, "png", f);
-	      }catch(IOException e){
-	        System.out.println(e);
-	    }
+//	    BufferedImage new_img = csv_to_img(img_csv);
+//
+//	    try{
+//	        f = new File("data/CUSEn9ne.csv");
+//	        ImageIO.write(new_img, "png", f);
+//	      }catch(IOException e){
+//	        System.out.println(e);
+//	    }
 
 	}
 

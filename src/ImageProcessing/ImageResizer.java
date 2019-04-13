@@ -38,11 +38,11 @@ public class ImageResizer {
 	 * @throws IOException
 	 */
 	public static void main(String [] args) throws IOException{
-		BufferedImage originalImage = ImageIO.read(new File("data/sample_pictures/raymond_5_bold.png"));
+		BufferedImage originalImage = ImageIO.read(new File("data/IMG_7461.jpg"));
 		int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 		
 		BufferedImage resizeImagePng = resizeImage(originalImage, type);
-		ImageIO.write(resizeImagePng, "png", new File("data/sample_pictures/test_5_bold-28x28.png")); 
+		ImageIO.write(resizeImagePng, "png", new File("data/Latest5.png")); 
 	}
 
 }
