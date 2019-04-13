@@ -11,6 +11,7 @@ import ImageProcessing.MnistIReader;
 
 public class NetworkMain {
 	
+	// helper method to convert a 2-D array into a 1-D array
 	public static int[] arrConvert(int arr[][]) {
 		int[] x = new int[arr[0].length * arr.length];
 		
@@ -52,7 +53,7 @@ public class NetworkMain {
 			label_set[i] = net.genOutputs(labels[i]); 
 		}
 
-		net.trainNet(image_set, label_set, 300);
+		net.trainNet(image_set, label_set, 100);
 		
 		System.out.print("\n\n --------------------  Done Mnist ---------------------------- \n\n");
 		
@@ -74,8 +75,8 @@ public class NetworkMain {
 
 
 		
-		//System.out.print("before training (soln is " + labels[0] + ") :");
 		
+		// there is a larger test in 
 		int[] input = arrConvert(images.get(10000));
 		int[] input2 = arrConvert(images.get(9999));
 		int[] input3 = arrConvert(images.get(9998));
@@ -126,6 +127,7 @@ public class NetworkMain {
 		System.out.println("\n" + labels[9991]);
 		System.out.println(net.evaluate(input10));
 				
+		// saving weights and biases to text files
 		net.write_weights();
 		net.write_biases();
 

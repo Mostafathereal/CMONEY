@@ -55,6 +55,7 @@ public class NewNetwork {
 	}
 	
 	public int evaluate(int inputs[]) {
+		
 		feedForward(inputs);
 		double maxVal = act3[0];
 		int maxInd = 0;
@@ -64,9 +65,17 @@ public class NewNetwork {
 				maxInd = i;
 			}
 		}
-		
-		
 		return maxInd;
+	}
+	
+	public double evaluateConfidence() {
+		double[] arr = new double[10];
+		
+		for(int i = 0; i < 10; i++) {
+			arr[i] = act3[i];
+		}
+		arr = Mergesort.mergesort(arr);
+		return (double) arr[9];
 	}
 	
 	
