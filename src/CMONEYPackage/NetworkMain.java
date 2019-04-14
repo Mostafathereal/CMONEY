@@ -11,7 +11,11 @@ import ImageProcessing.MnistIReader;
 
 public class NetworkMain {
 	
-	// helper method to convert a 2-D array into a 1-D array
+	/**
+	 * helper method to convert a 2D array into a a 1D array
+	 * @param arr The 2-D array to be converted
+	 * @return A 1-D representation of the input array
+	 */
 	public static int[] arrConvert(int arr[][]) {
 		int[] x = new int[arr[0].length * arr.length];
 		
@@ -24,16 +28,9 @@ public class NetworkMain {
 		return x;
 	}
 
-
 	public static void main(String[] args) throws IOException {
 		NewNetwork net = new NewNetwork(); 
-		
-		net.setRandWeights();
-		net.setRandBiases();
-	
-//		net.readAllW();
-//		net.read_biases();
-		
+				
 	    MnistIReader R = (MnistIReader) new MnistIReader();
 
 		
@@ -58,76 +55,19 @@ public class NetworkMain {
 		System.out.print("\n\n --------------------  Done Mnist ---------------------------- \n\n");
 		
 		
+		// the below commented code is to train with the kaggle data set, 
+		// this takes a significant amount of time
 //		for(int i = 1; i < 100; i++) {
 //			kagLabels[i] = net.genOutputs(KagglReader.kag_reader_train_label(i));
 //			kagImages[i] = arrConvert(KagglReader.kag_reader_train(i));
 //		}
-		
-		
-		
-				
-		System.out.print("\n\n --------------------  Done Loading Kaggle ---------------------------- \n\n");
-
-
+		//System.out.print("\n\n --------------------  Done Loading Kaggle ---------------------------- \n\n");
 		//net.trainNet(kagImages, kagLabels, 100);
 
+	
 		
-
-
-		
-		
-		// there is a larger test in 
-		int[] input = arrConvert(images.get(10000));
-		int[] input2 = arrConvert(images.get(9999));
-		int[] input3 = arrConvert(images.get(9998));
-		int[] input4 = arrConvert(images.get(9997));
-		int[] input5 = arrConvert(images.get(9996));
-		int[] input6 = arrConvert(images.get(9995));
-		int[] input7 = arrConvert(images.get(9994));
-		int[] input8 = arrConvert(images.get(9993));
-		int[] input9 = arrConvert(images.get(9992));
-		int[] input10 = arrConvert(images.get(9991));
-		
-		System.out.println("\n" + labels[10000]);
-		System.out.println(net.evaluate(input));
-		
-		
-		System.out.println("\n" + labels[9999]);
-		System.out.println(net.evaluate(input2));
-		
-		
-		System.out.println("\n" + labels[9998]);
-		System.out.println(net.evaluate(input3));
-		
-		
-		System.out.println("\n" + labels[9997]);
-		System.out.println(net.evaluate(input4));
-		
-		
-		System.out.println("\n" + labels[9996]);
-		System.out.println(net.evaluate(input5));
-		
-		
-		System.out.println("\n" + labels[9995]);
-		System.out.println(net.evaluate(input6));
-		
-		
-		System.out.println("\n" + labels[9994]);
-		System.out.println(net.evaluate(input7));
-		
-		
-		System.out.println("\n" + labels[9993]);
-		System.out.println(net.evaluate(input8));
-		
-		
-		System.out.println("\n" + labels[9992]);
-		System.out.println(net.evaluate(input9));
-		
-		
-		System.out.println("\n" + labels[9991]);
-		System.out.println(net.evaluate(input10));
 				
-		// saving weights and biases to text files
+		// saving weights and biases to text fials
 		net.write_weights();
 		net.write_biases();
 

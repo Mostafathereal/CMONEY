@@ -9,6 +9,11 @@ import ImageProcessing.MnistIReader;
 
 public class NetRead {
 	
+	/**
+	 * helper method to convert a 2D array into a a 1D array
+	 * @param arr The 2-D array to be converted
+	 * @return A 1-D representation of the input array
+	 */
 	public static int[] arrConvert(int arr[][]) {
 		int[] x = new int[arr[0].length * arr.length];
 		
@@ -20,6 +25,22 @@ public class NetRead {
 		}
 		return x;
 	}
+	
+	
+	
+	
+	//
+	//
+	//
+	//        PLEASE SET INPUT ARGUMENT TO ONE OF "five", "four", "three", or "nine" BEFORE RUNNING
+	//
+	//		  These are hand writen examples by us to further verify that the newtork works on images that are not from the data set
+	//		  Feel free to generate your own hand written grey-scale 28x28 image as input to this module
+	//
+	//
+	//
+	
+	
 
 	public static void main(String[] args) throws IOException {
 		
@@ -79,7 +100,7 @@ public class NetRead {
 			}
 			System.out.println("\n");
 		}
-		System.out.println("YOUR NUMBER IS: " + network.evaluate(img) + " with " + network.evaluateConfidence() + "% confidence");
+		System.out.println("YOUR NUMBER IS: " + network.evaluate(img) + " with " + network.evaluateConfidence() * 100 + "% confidence");
 		
 		
 			

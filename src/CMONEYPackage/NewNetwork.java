@@ -50,9 +50,17 @@ public class NewNetwork {
 		act1 = new double[16];
 		act2 = new double[16];
 		act3 = new double[10];
+		
+		setRandWeights();
+		setRandBiases();
 
 	}
 
+	/**
+	 * evaluates an image based on current weights and biases
+	 * @param inputs[] an array of pixel values representing the input image
+	 * @return The number that the network predicts to be the number written in the image
+	 */
 	public int evaluate(int inputs[]) {
 
 		feedForward(inputs);
@@ -66,7 +74,11 @@ public class NewNetwork {
 		}
 		return maxInd;
 	}
-
+	
+	/**
+	 * evaluates the networks confidence on it's answer
+	 * @return a number between 0 and 1 representing the confidence of the network's answer
+	 */
 	public double evaluateConfidence() {
 		double[] arr = new double[10];
 
@@ -77,7 +89,7 @@ public class NewNetwork {
 		return (double) arr[9];
 	}
 
-	public void setRandWeights() {
+	private void setRandWeights() {
 		for (int i = 0; i < this.w0.length; i++) {
 			for (int j = 0; j < this.w0[i].length; j++) {
 				this.w0[i][j] = randRange(-1, 1);
@@ -100,8 +112,8 @@ public class NewNetwork {
 	private double randRange(double a, double b) {
 		return a + (b - a) * Math.random();
 	}
-
-	public void setRandBiases() {
+	
+	private void setRandBiases() {
 
 		for (int j = 0; j < b0.length; j++) {
 			b0[j] = randRange(-1, 1);
@@ -117,6 +129,12 @@ public class NewNetwork {
 
 	}
 
+	/**
+	 * This method trains the neural network
+	 * @param in[][] data set of images
+	 * @param out[][] correct solution of final activation values
+	 * @param epochs number of times to train the network on  the given data set
+	 */
 	public void trainNet(int in[][], int out[][], int epochs) {
 		for (int j = 0; j < epochs; j++) {
 			for (int i = 0; i < out.length; i++) {
@@ -128,7 +146,8 @@ public class NewNetwork {
 			}
 		}
 	}
-
+	
+	// helper method to generate correct solution array for activation values 
 	public int[] genOutputs(int num) {
 		int[] outputs = new int[10];
 		outputs[num] = 1;
@@ -324,6 +343,7 @@ public class NewNetwork {
 		return result;
 	}
 
+	
 	private void feedForward(int[] inputs) {
 		// input layer
 		for (int i = 0; i < this.sizes[0]; i++) {

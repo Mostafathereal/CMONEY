@@ -1,5 +1,7 @@
 package CMONEYPackage;
 
+// this merge sort was used from the Algorithms 4th edition textbook and can be found here https://algs4.cs.princeton.edu/14analysis/Mergesort.java.html
+
 /******************************************************************************
  *  Compilation:  javac Mergesort.java
  *  Execution:    java Mergesort N

@@ -1,3 +1,6 @@
+// This Mnist reader was found online here https://github.com/jeffgriffith/mnist-reader/blob/master/src/main/java/mnist/MnistReader.java
+// This is used to convert the MNIST data set images to readable format
+
 package ImageProcessing;
 
 import static java.lang.String.format;
