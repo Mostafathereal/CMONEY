@@ -12,3 +12,7 @@ Once the network is trained, we save the weights and biases to a text file and r
   - Our Android studios project includes binary search on the different currencies
   - Our Eclipse project includes back propagation as the graphing algorithm
   - Our Eclipse project uses merge sort in the evaluateConfidence() method in the network class
+  
+  
+PLEASE NOTE THAT THE THE NEWTROK DOES NOT NEED TO BE TRAINED, the submitted project already has trained weights and biases, 
+however, the training module `NetworkMain` can be be run to train if you have time :) 

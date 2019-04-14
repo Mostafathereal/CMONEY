@@ -79,9 +79,9 @@ public class NetRead {
 		}
 		double res = counter / 10000;
 		
-		System.out.println("");
+		System.out.println("\n\n\n");
 		System.out.println("--------------------------------------------------------------------------");
-		System.out.print("AVG CORRECTNESS: " + res*100 + "%\n");
+		System.out.print("AVG ACCURACY: " + res*100 + "%\n");
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("");
 
