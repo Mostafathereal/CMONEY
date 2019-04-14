@@ -7,20 +7,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Resizes input image to 28x28 to be processed in neural network
- * 
+ * Takes in an image of any size (even rectangular) and resizes it to be a 28 x 28 pixel 
+ * image that would be an applicable size to be put through our neural network 
  * Taken from https://www.mkyong.com/java/how-to-resize-an-image-in-java/
- * @author Raymond
+ * @author Raymond Tu
  * @since 2019-03-07
  *
  */
 public class ImageResizer {
 	
-	/**
-	 * 
-	 * @param originalImage
-	 * @param type
-	 * @return
+	/**Takes in an image of any size (even rectangular) and resizes it to be a 28 x 28 pixel 
+	 * image that would be an applicable size to be put through our neural network 
+	 * @param originalImage Original passed in image to the method
+	 * @param type Integer value that denotes the image format (png, jpg, etc)
+	 * @return resizedImage Resized 28x28 image with the same original type
 	 */
 	public static BufferedImage resizeImage(BufferedImage originalImage, int type)
 	{

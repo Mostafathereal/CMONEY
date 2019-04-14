@@ -22,7 +22,11 @@ public class ImageToCSV {
 	}
 	
 	
-
+	/**
+	 * Takes in a 28x28 image and converts it to a 2-D Array of integers, where each integer denotes it’s RGB pixel value.
+	 * @param img 28x28 image of any type to be resized
+	 * @return img_array 2-D Array of integers size [28][28], where each integer denotes its corresponding RGB pixel value. 
+	 */
 	public static int[][] img_to_csv(BufferedImage img){
 		int [][] img_array = new int[28][28];
 
@@ -49,29 +53,34 @@ public class ImageToCSV {
 		}
 		return img_array;
 	}
+	
+	/**
+	 * Takes in a 2-D integer array and converts it into an image of 28x28 pixels
+	 * @param img_array Passed in 2-D integer array where each integer value denotes it’s according pixel RGB value
+	 * @return img 28x28 image that should be the same as the original image before it was converted into an array.
 
-//	public static BufferedImage csv_to_img(int [][] img_array){
-//		BufferedImage img = new BufferedImage(28,28,5);
-//
-//		//save alpha values for each pixel
+	 */
+	public static BufferedImage csv_to_img(int [][] img_array){
+		BufferedImage img = new BufferedImage(28,28,5);
+
+		//save alpha values for each pixel
 //		//convert RGB values to alpha values to differentiate number, assuming colours closer to white are backround
 //		//and colours closer to black as the handwritten number
 //		//need to convert because for real images taken from phone, transparency will be at minimum for all pixels
 //		//(no differentiation between background and foreground)
-//		for (int y = 0; y <= 27; y++) {
-//			for (int x = 0; x <= 27; x++) {
-//
-//				int r = img_array[y][x];
-//				int g = img_array[y][x];
-//				int b = img_array[y][x];
-//				int a = img_array[y][x];
-//
-//				int p = (a<<24) | (r<<16) | (g<<8) | b;
-//			    img.setRGB(x, y, p);
-//			}
-//		}
-//		return img;
-//	}
+	for (int y = 0; y <= 27; y++) {
+		for (int x = 0; x <= 27; x++) {
+			int r = img_array[y][x];
+			int g = img_array[y][x];
+			int b = img_array[y][x];
+			int a = img_array[y][x];
+
+			int p = (a<<24) | (r<<16) | (g<<8) | b;
+		    img.setRGB(x, y, p);
+		}
+	}
+	return img;
+	}
 	
 	public static void mai(String fName) {
 	    BufferedImage img = null;
